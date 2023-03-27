@@ -1,0 +1,8 @@
+/**
+ * Bundled by jsDelivr using Rollup v2.74.1 and Terser v5.15.1.
+ * Original file: /npm/uc.micro@1.0.6/properties/Any/regex.js
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+var F=/[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/;export{F as default};
+//# sourceMappingURL=/sm/e6f1471c624e666c49659db43a07a2949f7383027109358351204f189cb8c423.map

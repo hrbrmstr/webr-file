@@ -1,0 +1,8 @@
+/**
+ * Bundled by jsDelivr using Rollup v2.74.1 and Terser v5.15.1.
+ * Original file: /npm/markdown-it-front-matter@0.2.3/index.js
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+var r=function(r,e){var t="-",a=t.charCodeAt(0),n=t.length;r.block.ruler.before("table","front_matter",(function(r,o,l,c){var i,s,f,p,u,k,b,h=!1,M=r.bMarks[o]+r.tShift[o],d=r.eMarks[o];if(0!==o||a!==r.src.charCodeAt(0))return!1;for(i=M+1;i<=d;i++)if(t[(i-M)%n]!==r.src[i]){b=i+1;break}if((f=Math.floor((i-M)/n))<3)return!1;if(i-=(i-M)%n,c)return!0;for(s=o;!(++s>=l)&&"..."!==r.src.slice(M,d)&&!((M=r.bMarks[s]+r.tShift[s])<(d=r.eMarks[s])&&r.sCount[s]<r.blkIndent);)if(a===r.src.charCodeAt(M)&&!(r.sCount[s]-r.blkIndent>=4)){for(i=M+1;i<=d&&t[(i-M)%n]===r.src[i];i++);if(!(Math.floor((i-M)/n)<f||(i-=(i-M)%n,(i=r.skipSpaces(i))<d))){h=!0;break}}return u=r.parentType,k=r.lineMax,r.parentType="container",r.lineMax=s,(p=r.push("front_matter",null,0)).hidden=!0,p.markup=r.src.slice(o,i),p.block=!0,p.map=[o,i],p.meta=r.src.slice(b,M-1),r.parentType=u,r.lineMax=k,r.line=s+(h?1:0),e(p.meta),!0}),{alt:["paragraph","reference","blockquote","list"]})};export{r as default};
+//# sourceMappingURL=/sm/37fc46d95f4f3e497e8eb7c509cc2e906a8aef6a9c8671b658302aabf4ceccc9.map

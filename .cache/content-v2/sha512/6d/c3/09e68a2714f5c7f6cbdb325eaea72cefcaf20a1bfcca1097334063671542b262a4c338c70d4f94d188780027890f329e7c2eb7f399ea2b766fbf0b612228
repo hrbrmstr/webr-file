@@ -1,0 +1,8 @@
+/**
+ * Bundled by jsDelivr using Rollup v2.74.1 and Terser v5.15.1.
+ * Original file: /npm/uc.micro@1.0.6/categories/Cc/regex.js
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+var x=/[\0-\x1F\x7F-\x9F]/;export{x as default};
+//# sourceMappingURL=/sm/afe1868e4bc4eec605d8c68bc41eca2deb49a636841cb5f9a6221d17bc1d2769.map
