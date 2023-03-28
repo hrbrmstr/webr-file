@@ -48,7 +48,7 @@ text-area {
 @media (prefers-color-scheme: dark) {
   body, textarea {
     background-color: #1c1c1e;
-    color: #f0f0f0; 
+    color: #e0e0e0; 
   }
 
   a {
