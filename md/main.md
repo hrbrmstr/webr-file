@@ -3,7 +3,7 @@
   "title": "A Moderately More Useful WebR Experiment?",
   "og" : {
     "site_name": "WebR Exeriments",
-    "url": "https://rud.is/w/webr-drop",
+    "url": "https://rud.is/w/webr-file",
     "description": "Select a data file (CSV) and let WebR (& Arquero) 'analyze' it for you!",
     "image": {
       "url": "https://rud.is/w/webr-file/img/preview.png",
@@ -42,12 +42,24 @@ In this experiment, we're doing some more serious work with what may be one typi
 
 Instead of including the R files from {basetheme} like we did with a previous experiment, we're riffing from @timelyportfolio's [experiment](https://main--moonlit-chimera-8d3e09.netlify.app/) where he figured out a neat way to install built packages from rOpenSci's R Universe. 
 
-I'm a bit pressed for time this morning, so here's a just a rough guide to grok what's going on:
+I'm a bit pressed for time this morning, so here's a just a rough guide to grok what's going on.
 
-- `wc/file-drop.js` is a Lit component to handle the file selection and initial data reading
-- `wc/file-target.js` is another Lit component to handle the displays of plots and tables
-- `r.js` has some new functions which make it easier to install packages from R Universe
-- `main.js` does all the package loading
+First the entire plain web page (sans experiment blather) is just: 
+
+```html
+<file-target id="stuff">
+  <file-drop id="input-csv" label="Select a CSV File"></file-drop>
+</file-target>
+```
+
+Plus some header bits.
+
+The core files to focus on are:
+
+- `wc/file-drop.js`: a Lit component to handle the file selection and initial data reading
+- `wc/file-target.js`: another Lit component to handle the displays of plots and tables
+- `r.js`: which has some new functions which make it easier to install packages from R Universe
+- `main.js`: does all the package loading
 
 I'll exposit more when time allows.
 
