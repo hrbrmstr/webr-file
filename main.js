@@ -14,14 +14,15 @@ await renderMarkdownInBody(
 
 import "./wc/status-message.js"
 import './wc/file-drop.js'
-import './wc/drop-target.js'
+import './wc/file-target.js'
 
-// update our status component
 let message = document.getElementById("status");
 message.text = "WebR Loading…"
 
-// crank up WebR
 import * as R from "./r.js";
+
+await R.installRUniversePackages("basetheme")
+R.library("basetheme")
 
 message.text = "Installing {xtable}…"
 await R.webR.installPackages([ "xtable" ])
@@ -31,5 +32,4 @@ message.text = "Web R Initialized!"
 
 await R.library(`datasets`)
 
-// it's all in the hands of the user now
 message.text = "Ready"

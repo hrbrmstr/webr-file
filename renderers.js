@@ -6,7 +6,7 @@
 import * as shiki from './dist/index.browser.mjs';
 import MarkdownIt from 'https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/+esm';
 import markdownItFrontMatter from 'https://cdn.jsdelivr.net/npm/markdown-it-front-matter@0.2.3/+esm'
-import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+import { json as readJSON, text as readText } from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 import { createMetaTag } from './utils.js';
 
 export let frontMatter;
@@ -33,7 +33,7 @@ export async function renderMarkdownInBody(
 	langs = [ 'javascript', 'r', 'json', 'xml', 'console' ],
 	renderFrontmatter = true) {
 	
-	currentTheme = await d3.json(`./themes/${theme}.json`);
+	currentTheme = await readJSON(`./themes/${theme}.json`);
 	const readHTML = new DOMParser();
 	const content = document.getElementById("content")
 
@@ -88,7 +88,7 @@ export async function renderMarkdownInBody(
 	})
 
 	// parse the rest of the document and add it to the body
-	const mdContent = await d3.text(`md/${markdownFile}.md`);
+	const mdContent = await readText(`md/${markdownFile}.md`);
 	const rendered = md.render(mdContent);
 	const contentParsed = readHTML.parseFromString(rendered, "text/html");
 	const bodyContent = contentParsed.getElementsByTagName("body")[ 0 ];

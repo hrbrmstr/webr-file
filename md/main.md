@@ -1,10 +1,10 @@
 ---
 {
-  "title": "A Moderately More Useful WebR Experiment",
+  "title": "A Moderately More Useful WebR Experiment?",
   "og" : {
     "site_name": "WebR Exeriments",
     "url": "https://rud.is/w/webr-drop",
-    "description": "Drag/select a data file and let WebR analyze it for you!",
+    "description": "Select a data file (CSV) and let WebR (& Arquero) 'analyze' it for you!",
     "image": {
       "url": "https://rud.is/w/webr-drop/img/preview.png",
       "height": "768",
@@ -23,10 +23,10 @@
 
 <status-message id="status"></status-message>
 
-## Drag & Drop Analyses With WebR
+## Upload CSV Data Analysis With WebR (& Arquero)
 
-<drop-target id="stuff">
+<file-target id="stuff">
 <file-drop id="input-csv" label="Select a CSV File"></file-drop>
-</drop-target>
+</file-target>
 
 <p style="text-align:center;margin-top:2rem;">Brought to you by @hrbrmstr</p>

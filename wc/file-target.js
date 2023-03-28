@@ -1,12 +1,17 @@
 import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 import { unsafeHTML } from 'https://unpkg.com/lit/directives/unsafe-html.js?module';
+
+import { csvParse, autoType } from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+import { from as asTable }  from 'https://cdn.jsdelivr.net/npm/arquero@5.1.0/+esm'
+
 import * as R from '../r.js'
 
-export class DropTarget extends LitElement {
+export class FileTarget extends LitElement {
 	
 	static properties = {
 		summary: { type: String },
 		data: { type: String },
+		arqTable: { type: String }
 	};
 	
 	static styles = [
@@ -39,14 +44,20 @@ export class DropTarget extends LitElement {
 	async connectedCallback() {
 		super.connectedCallback();
 		
-		console.log("IN TARGET connectedCallback")
 		this.addEventListener('filesDropped', async (e) => {
 			
 			if (e.detail.dataString) {
-				
+
+				this.arqTable = asTable(await csvParse(e.detail.dataString, autoType)).slice(0, 5).toHTML()
+
 				const dataShelter = await new R.webR.Shelter();
 
-				const res = await dataShelter.captureR(`xdf <- read.csv(text=r"(${e.detail.dataString})")`)
+				const encoder = new TextEncoder();
+				const buffer = encoder.encode(e.detail.dataString);
+
+				await R.webR.FS.writeFile('analyze.csv', buffer)
+
+				await dataShelter.captureR(`xdf <- read.csv('analyze.csv')`)
 
 				const sumRes = await dataShelter.captureR(`print(xtable(summary(xdf)), type = "html")`,
 					{
@@ -55,7 +66,7 @@ export class DropTarget extends LitElement {
 						captureConditions: false
 					})
 				
-				const datRes = await dataShelter.captureR(`print(xtable(xdf), type = "html")`,
+				const datRes = await dataShelter.captureR(`print(xtable(head(xdf)), type = "html")`,
 					{
 						withAutoprint: true,
 						captureStreams: true,
@@ -71,22 +82,12 @@ export class DropTarget extends LitElement {
 		});
 		
 	}
-	
-	performUpdate() {
-		super.performUpdate();
-		// console.log("PERFORM UPDTAE")
-		// const options = {
-		// 	detail: { value: this.dataString },
-		// 	bubbles: true,
-		// 	composed: true,
-		// };
-		// this.dispatchEvent(new CustomEvent(`filesDropped`, options));
-	}
-	
+		
 	constructor() {
 		super();
 		this.data = ''
 		this.summary = ''
+		this.arqTable = ''
 	}
 	
 	render() {
@@ -97,10 +98,12 @@ export class DropTarget extends LitElement {
     <div id="sum">${unsafeHTML(this.summary)}</div>
 		<h3>${this.data.length > 0 ? "Data Table" : ""}</h3>
 	  <div id="tbl">${unsafeHTML(this.data)}</div>
+		<h3>${this.data.length > 0 ? "Arquero Table" : ""}</h3>
+		<div id="arq">${unsafeHTML(this.arqTable)}
    	</div>`;
 		}
 		
 	}
 	
-	customElements.define('drop-target', DropTarget);
+	customElements.define('file-target', FileTarget);
 	

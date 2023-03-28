@@ -2,7 +2,7 @@
  * @module utils
  */
 
-import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+import { range } from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 /**
  * Make R data frames more useful in JS
@@ -19,7 +19,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
  * let usable = webRDataFrameToJS(output);
  */
 export function webRDataFrameToJS(obj) {
-	return d3.range(0, obj.values[0].values.length).map((ridx) => {
+	return range(0, obj.values[0].values.length).map((ridx) => {
 		let m = {};
 		for (var cidx = 0; cidx < obj.names.length; cidx++) {
 			m[obj.names[cidx]] = obj.values[cidx].values[ridx];

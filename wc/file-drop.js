@@ -37,18 +37,21 @@ export class FileDrop extends LitElement {
     `;
   }
 
-  _handleDrop(e) {
+	_handleDrop(e) {
+		
 		this.files = e.target.files;
 		const rdr = new FileReader();
+
 		rdr.onload = (e) => {
+
 			const options = {
 				detail: { dataString: e.target.result },
 				bubbles: true,
 				composed: true,
 			};
-			// console.log("In file-drop, issuing event")
+			
 			this.dispatchEvent(new CustomEvent(`filesDropped`, options));
-			// console.log("In file-drop, event issued")
+			
 		};
 		rdr.readAsText(this.files[0]);
   }
