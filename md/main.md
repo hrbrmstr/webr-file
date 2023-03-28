@@ -51,4 +51,6 @@ I'm a bit pressed for time this morning, so here's a just a rough guide to grok 
 
 I'll exposit more when time allows.
 
+You can find the source for this experiment [on GitHub]()
+
 <p style="text-align:center;margin-top:2rem;">Brought to you by @hrbrmstr</p>
