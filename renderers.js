@@ -30,7 +30,7 @@ export let highlighter;
 export async function renderMarkdownInBody(
 	markdownFile,
 	theme,
-	langs = [ 'javascript', 'r', 'json', 'xml', 'console' ],
+	langs = [ 'javascript', 'r', 'json', 'xml', 'html', 'console' ],
 	renderFrontmatter = true) {
 	
 	currentTheme = await readJSON(`./themes/${theme}.json`);
@@ -39,7 +39,7 @@ export async function renderMarkdownInBody(
 
 	const highlighter = await shiki.getHighlighter({
 		theme: 'ayu-dark',
-		langs: [ 'js', 'r', 'json', 'xml', 'console' ]
+		langs: [ 'js', 'r', 'json', 'xml', 'html', 'console' ]
 	});
 
 	const md = new MarkdownIt({
