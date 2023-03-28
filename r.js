@@ -4,7 +4,7 @@
  * @module rstuff
  */
 
-import { WebR } from 'https://webr.r-wasm.org/latest/webr.mjs'
+import { WebR } from 'https://rud.is/webr/webr.mjs'
 import { json as readJSON } from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 globalThis.webR = new WebR();
