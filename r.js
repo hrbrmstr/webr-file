@@ -7,7 +7,12 @@
 import { WebR } from 'https://rud.is/webr/webr.mjs'
 import { json as readJSON } from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
-globalThis.webR = new WebR();
+globalThis.webR = new WebR({
+	WEBR_URL: "/webr/",
+	SW_URL: "/webr/",
+	baseUrl: "/webr/",
+	serviceWorkerUrl: "/webr/"
+});
 
 // so we can use it from the console
 await globalThis.webR.init();
