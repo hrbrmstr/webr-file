@@ -21,15 +21,18 @@ message.text = "WebR Loading…"
 
 import * as R from "./r.js";
 
-await R.installRUniversePackages("basetheme")
-R.library("basetheme")
+message.text = "Installing packages…"
 
-message.text = "Installing {xtable}…"
-await R.webR.installPackages([ "xtable" ])
-R.library("xtable")
+await R.webR.installPackages(["svglite", "xtable"])
+await R.installRUniversePackages("basetheme")
+
+await R.webR.evalRVoid(`
+library(svglite)
+library(xtable)
+library(basetheme)
+library(datasets)
+`)
 
 message.text = "Web R Initialized!"
-
-await R.library(`datasets`)
 
 message.text = "Ready"

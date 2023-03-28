@@ -19,20 +19,16 @@ export const webR = globalThis.webR;
 export const rVersion = await globalThis.webR.evalRString(`paste0(unclass(getRversion())[[1]][1:2], collapse=".")`)
 
 /**
- * R's library() function
- * 
- * @param {string} package R package name
- */
-export const library = await globalThis.webR.evalR('library')
-
-/**
  * Install one or more R packages from R universe
  * 
  * Inspired by timelyportfolio
  * 
  * @note IT IS ON YOU FOR NOW TO ENSURE NO PACKAGES IN THE 
  *       DEPENDENCY TREE REQUIRE COMPILATION
- * @param {string[]} pkgs string array of R pkg names
+ * @param {string[] | string} pkgs string or string array of R pkg names
+ * @example
+ * await R.installRUniversePackages("basetheme")
+ * R.library("basetheme")
  */
 export async function installRUniversePackages(pkgs) {
 

@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 import { unsafeHTML } from 'https://unpkg.com/lit/directives/unsafe-html.js?module';
+import { unsafeSVG } from 'https://unpkg.com/lit/directives/unsafe-svg.js?module';
 
 import { csvParse, autoType } from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 import { from as asTable }  from 'https://cdn.jsdelivr.net/npm/arquero@5.1.0/+esm'
@@ -11,7 +12,8 @@ export class FileTarget extends LitElement {
 	static properties = {
 		summary: { type: String },
 		data: { type: String },
-		arqTable: { type: String }
+		arqTable: { type: String },
+		sumPlot: { type: String },
 	};
 	
 	static styles = [
@@ -73,6 +75,17 @@ export class FileTarget extends LitElement {
 						captureConditions: false
 					})
 				
+				this.sumPlot = await R.webR.evalRString(`
+basetheme("deepblue")
+s <- svgstring(width = 8, height = 8, pointsize = 8, id = 'summary-plot', standalone = FALSE)
+plot(xdf)
+dev.off()
+plot_svg <- s()
+plot_svg <- sub("width='\\\\d+(\\\\.\\\\d+)?pt'", "width='100%'", plot_svg)
+plot_svg <- sub("height='\\\\d+(\\\\.\\\\d+)?pt'", "", plot_svg)
+plot_svg
+`)
+			
         this.summary = sumRes.output.filter(d => d.type == "stdout").map(d => d.data).join("\n")
 				this.data = datRes.output.filter(d => d.type == "stdout").map(d => d.data).join("\n")
 
@@ -88,19 +101,22 @@ export class FileTarget extends LitElement {
 		this.data = ''
 		this.summary = ''
 		this.arqTable = ''
+		this.sumPlot = ''
 	}
 	
 	render() {
 		return html`
 		<div>
-		<slot></slot>
-		<h3>${this.summary.length > 0 ? "Summary Info" : ""}</h3>
-    <div id="sum">${unsafeHTML(this.summary)}</div>
-		<h3>${this.data.length > 0 ? "Data Table" : ""}</h3>
-	  <div id="tbl">${unsafeHTML(this.data)}</div>
-		<h3>${this.data.length > 0 ? "Arquero Table" : ""}</h3>
-		<div id="arq">${unsafeHTML(this.arqTable)}
-   	</div>`;
+			<slot></slot>
+			<h3>${this.summary.length > 0 ? "Summary Info" : ""}</h3>
+			<div id="sum">${unsafeHTML(this.summary)}</div>
+			<h3>${this.data.length > 0 ? "Data Table" : ""}</h3>
+			<div id="tbl">${unsafeHTML(this.data)}</div>
+			<h3>${this.data.length > 0 ? "Summary Plot" : ""}</h3>
+			<div id="tbl">${unsafeSVG(this.sumPlot)}</div>
+			<h3>${this.data.length > 0 ? "Arquero Table" : ""}</h3>
+			<div id="arq">${unsafeHTML(this.arqTable)}</div>
+    </div>`;
 		}
 		
 	}
