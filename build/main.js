@@ -308,7 +308,7 @@ let frontMatter;
 async function renderMarkdownInBody(
 	markdownFile,
 	theme,
-	langs = [ 'javascript', 'r', 'json', 'xml', 'console' ],
+	langs = [ 'javascript', 'r', 'json', 'xml', 'html', 'console' ],
 	renderFrontmatter = true) {
 	
 	await p$6(`./themes/${theme}.json`);
@@ -317,7 +317,7 @@ async function renderMarkdownInBody(
 
 	const highlighter = await re$4({
 		theme: 'ayu-dark',
-		langs: [ 'js', 'r', 'json', 'xml', 'console' ]
+		langs: [ 'js', 'r', 'json', 'xml', 'html', 'console' ]
 	});
 
 	const md = new jt$4({
