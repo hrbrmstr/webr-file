@@ -6,7 +6,7 @@
     "url": "https://rud.is/w/webr-drop",
     "description": "Select a data file (CSV) and let WebR (& Arquero) 'analyze' it for you!",
     "image": {
-      "url": "https://rud.is/w/webr-drop/img/preview.png",
+      "url": "https://rud.is/w/webr-file/img/preview.png",
       "height": "768",
       "width": "1536",
       "alt": "example"
