@@ -17,7 +17,7 @@ body {
 	font-size:1em;
 	line-height:1.5rem;
   color: #1c1c1e;
-  max-width: 50rem; /* Adjust this value to set a maximum width */
+  max-width: 60rem; /* Adjust this value to set a maximum width */
   margin: 0 auto;
   padding: 1rem;
 }
